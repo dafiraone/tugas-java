@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <header class="bg-base-100 shadow-sm">
+    <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+      <h1 class="text-xl font-bold">Sistem Akademik - Kelompok F2</h1>
+      <nav class="hidden lg:flex">
+        <ul class="flex space-x-4">
+          <li><a th:href="@{/dosen}" class="btn btn-link">Dosen</a></li>
+          <li><a th:href="@{/mahasiswa}" class="btn btn-link">Mahasiswa</a></li>
+          <li><a th:href="@{/mk}" class="btn btn-link">MK</a></li>
+          <li><a th:href="@{/nilai}" class="btn btn-link">Nilai</a></li>
+        </ul>
+      </nav>
+      <button class="btn btn-sm lg:hidden" id="menu-toggle">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16v12H4zM4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"></path></svg>
+      </button>
+    </div>
+  </header>
+  <nav id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-base-200 z-50 hidden lg:hidden">
+    <ul class="flex flex-col space-y-4 px-4 pt-8">
+      <li><a th:href="@{/dosen}" class="btn btn-block">Dosen</a></li>
+      <li><a th:href="@{/mahasiswa}" class="btn btn-block">Mahasiswa</a></li>
+      <li><a th:href="@{/mk}" class="btn btn-block">MK</a></li>
+      <li><a th:href="@{/nilai}" class="btn btn-block">Nilai</a></li>
+    </ul>
+  </nav>
+  <div class="container mx-auto px-4 pt-4">
+    </div>
+</body>
+</html>

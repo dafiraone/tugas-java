@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List Nilai</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-base-100 shadow-sm mb-10">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+          <h1 class="text-xl font-bold">Sistem Akademik - Kelompok F2</h1>
+          <nav class="hidden lg:flex">
+            <ul class="flex space-x-4">
+              <li><a th:href="@{/dosen}" class="btn btn-link">Dosen</a></li>
+              <li><a th:href="@{/mahasiswa}" class="btn btn-link">Mahasiswa</a></li>
+              <li><a th:href="@{/mk}" class="btn btn-link">MK</a></li>
+              <li><a th:href="@{/nilai}" class="btn btn-link">Nilai</a></li>
+            </ul>
+          </nav>
+          <button class="btn btn-sm lg:hidden" id="menu-toggle">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16v12H4zM4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"></path></svg>
+          </button>
+        </div>
+      </header>
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded shadow-md">
+        <h1 class="text-2xl font-bold mb-4">List Nilai</h1>
+        <a href="/nilai/new" class="btn btn-primary mb-4">Add New Nilai</a>
+        <table class="w-full table-auto border-collapse border border-gray-200">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-200 px-4 py-2">ID</th>
+                    <th class="border border-gray-200 px-4 py-2">Mahasiswa</th>
+                    <th class="border border-gray-200 px-4 py-2">Dosen</th>
+                    <th class="border border-gray-200 px-4 py-2">Mata Kuliah</th>
+                    <th class="border border-gray-200 px-4 py-2">Score 1</th>
+                    <th class="border border-gray-200 px-4 py-2">Score 2</th>
+                    <th class="border border-gray-200 px-4 py-2">Score 3</th>
+                    <th class="border border-gray-200 px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="nilai : ${nilaiList}">
+                    <td class="border border-gray-200 px-4 py-2" th:text="${nilai.recNo}"></td>
+                    <td class="border border-gray-200 px-4 py-2" th:text="${nilai.mahasiswa.nama}"></td>
+                    <td class="border border-gray-200 px-4 py-2" th:text="${nilai.dosen.nama}"></td>
+                    <td class="border border-gray-200 px-4 py-2" th:text="${nilai.mataKuliah.mk}"></td>
+                    <td class="border border-gray-200 px-4 py-2" th:text="${nilai.sc1}"></td>
+                    <td class="border border-gray-200 px-4 py-2" th:text="${nilai.sc2}"></td>
+                    <td class="border border-gray-200 px-4 py-2" th:text="${nilai.sc3}"></td>
+                    <td class="border border-gray-200 px-4 py-2">
+                        <a th:href="@{/nilai/edit/{id}(id=${nilai.recNo})}" class="text-blue-500 hover:underline mr-2">Edit</a>
+                        <a th:href="@{/nilai/delete/{id}(id=${nilai.recNo})}" class="text-red-500 hover:underline">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

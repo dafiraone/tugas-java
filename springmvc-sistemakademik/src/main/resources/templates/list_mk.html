@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List Mata Kuliah</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-base-100 shadow-sm mb-10">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+          <h1 class="text-xl font-bold">Sistem Akademik - Kelompok F2</h1>
+          <nav class="hidden lg:flex">
+            <ul class="flex space-x-4">
+              <li><a th:href="@{/dosen}" class="btn btn-link">Dosen</a></li>
+              <li><a th:href="@{/mahasiswa}" class="btn btn-link">Mahasiswa</a></li>
+              <li><a th:href="@{/mk}" class="btn btn-link">MK</a></li>
+              <li><a th:href="@{/nilai}" class="btn btn-link">Nilai</a></li>
+            </ul>
+          </nav>
+          <button class="btn btn-sm lg:hidden" id="menu-toggle">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16v12H4zM4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"></path></svg>
+          </button>
+        </div>
+      </header>
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded shadow-md">
+        <h1 class="text-2xl font-bold mb-4">List Mata Kuliah</h1>
+        <a href="/mk/new" class="btn btn-primary mb-4">Add New Mata Kuliah</a>
+        <table class="table-auto w-full border-collapse border border-gray-200">
+            <thead>
+                <tr>
+                    <th class="border border-gray-200 px-4 py-2">ID</th>
+                    <th class="border border-gray-200 px-4 py-2">Kode Mata Kuliah</th>
+                    <th class="border border-gray-200 px-4 py-2">Nama Mata Kuliah</th>
+                    <th class="border border-gray-200 px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="mataKuliah : ${mataKuliahList}" class="hover:bg-gray-50">
+                    <td class="border border-gray-200 px-4 py-2" th:text="${mataKuliah.recNo}"></td>
+                    <td class="border border-gray-200 px-4 py-2" th:text="${mataKuliah.idMk}"></td>
+                    <td class="border border-gray-200 px-4 py-2" th:text="${mataKuliah.mk}"></td>
+                    <td class="border border-gray-200 px-4 py-2">
+                        <a th:href="@{/mk/edit/{id}(id=${mataKuliah.recNo})}" class="text-blue-500 hover:underline mr-2">Edit</a>
+                        <a href="#" class="text-red-500 hover:underline" onclick="confirm('Are you sure you want to delete this item?')">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

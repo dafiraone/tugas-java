@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Nilai</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-base-100 shadow-sm mb-10">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+          <h1 class="text-xl font-bold">Sistem Akademik - Kelompok F2</h1>
+          <nav class="hidden lg:flex">
+            <ul class="flex space-x-4">
+              <li><a th:href="@{/dosen}" class="btn btn-link">Dosen</a></li>
+              <li><a th:href="@{/mahasiswa}" class="btn btn-link">Mahasiswa</a></li>
+              <li><a th:href="@{/mk}" class="btn btn-link">MK</a></li>
+              <li><a th:href="@{/nilai}" class="btn btn-link">Nilai</a></li>
+            </ul>
+          </nav>
+          <button class="btn btn-sm lg:hidden" id="menu-toggle">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16v12H4zM4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"></path></svg>
+          </button>
+        </div>
+      </header>
+    <div class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
+        <h1 class="text-2xl font-bold mb-4">Create New Nilai</h1>
+        <form th:action="@{/nilai}" th:object="${nilai}" method="post">
+            <div class="form-control mb-4">
+                <label class="label" for="mahasiswa">Mahasiswa</label>
+                <select th:field="*{mahasiswa}" class="select select-bordered mt-1 block w-full">
+                    <option th:each="mhs : ${mahasiswaList}" th:value="${mhs.recNo}" th:text="${mhs.nama}">Mahasiswa</option>
+                </select>
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label" for="dosen">Dosen</label>
+                <select th:field="*{dosen}" class="select select-bordered mt-1 block w-full">
+                    <option th:each="dos : ${dosenList}" th:value="${dos.recNo}" th:text="${dos.nama}">Dosen</option>
+                </select>
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label" for="mataKuliah">Mata Kuliah</label>
+                <select th:field="*{mataKuliah}" class="select select-bordered mt-1 block w-full">
+                    <option th:each="mk : ${mataKuliahList}" th:value="${mk.recNo}" th:text="${mk.mk}">Mata Kuliah</option>
+                </select>
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label" for="sc1">Score 1</label>
+                <input type="number" th:field="*{sc1}" class="input input-bordered mt-1 block w-full" />
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label" for="sc2">Score 2</label>
+                <input type="number" th:field="*{sc2}" class="input input-bordered mt-1 block w-full" />
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label" for="sc3">Score 3</label>
+                <input type="number" th:field="*{sc3}" class="input input-bordered mt-1 block w-full" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Nilai</button>
+        </form>
+        <a th:href="@{/nilai}" class="text-sm block mt-4">Cancel</a>
+    </div>
+</body>
+</html>
